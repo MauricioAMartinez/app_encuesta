@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\correo;
 use App\Models\respuesta;
-use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 class RespuestaController extends Controller
@@ -53,12 +53,13 @@ class RespuestaController extends Controller
 
         $respuesta->save();
 
+        
+
 
         $correo = Correo::find($consulta);
-        $correo->correo = $request->correo;
         $correo->api_token = 0;
         $correo->save();
-        $correo = Correo::find($consulta);
+        
         return 'Coreo Enviado correctamente';
     }
 

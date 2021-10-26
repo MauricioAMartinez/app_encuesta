@@ -1,6 +1,6 @@
 <template>
   <v-data-table
-    :headers="headers"
+    :headers="headersEncuesta"
     :items="correo"
     sort-by="calories"
     class="elevation-1"
@@ -109,8 +109,7 @@
         <span>Reenviar</span>
       </v-tooltip>
 
-      <v-dialog transition="dialog-bottom-transition" max-width="600">
-        
+      <v-dialog transition="dialog-bottom-transition" max-width="900">
         <template v-slot:activator="{ on, attrs }">
           <v-icon
             small
@@ -128,14 +127,14 @@
         <template v-slot:default="dialog">
           <v-card>
             <v-toolbar color="primary" dark>Respuestas por fecha</v-toolbar>
-            <div>
-              <div v-for="respuesta in respuestas">
-                <v-col>
-                  <v-btn color="primary" @click="direccionar(respuesta.id)">{{
-                    respuesta.created_at
-                  }}</v-btn>
-                </v-col>
-              </div>
+            <div class="mt-5">
+              <v-data-table
+                dense
+                :headers="headers"
+                :items="respuestas"
+                item-key="name"
+                class="elevation-1"
+              ></v-data-table>
             </div>
 
             <v-card-actions class="justify-end">
@@ -151,13 +150,12 @@
 <script>
 export default {
   data: () => ({
-    
     dialog: false,
     dialogDelete: false,
     correo: [],
     respuestas: [],
     idEdit: 0,
-    headers: [
+    headersEncuesta: [
       {
         text: "#",
         align: "start",
@@ -179,6 +177,19 @@ export default {
     defaultItem: {
       correo: "",
     },
+
+    headers: [
+      {
+        text: "#",
+        align: "start",
+        value: "updated_at",
+      },
+      { text: "Pregunta_1", value: "respuesta_1" },
+      { text: "Pregunta_2", value: "respuesta_2" },
+      { text: "Pregunta_3", value: "respuesta_3" },
+      { text: "Pregunta_4", value: "respuesta_4" },
+      { text: "Pregunta_5", value: "respuesta_5" },
+    ],
   }),
 
   computed: {
@@ -204,7 +215,6 @@ export default {
     listarCorreo() {
       axios.get("correo").then((response) => (this.correo = response.data));
     },
- 
 
     editItem(item) {
       this.editedIndex = 1;
@@ -261,9 +271,7 @@ export default {
     listarRespuestas(item) {
       axios
         .get("respuesta/" + item.id)
-        .then((response) => (this.respuestas = response.data));
-     
-
+        .then((response) => console.log((this.respuestas = response.data)));
     },
     direccionar(item) {
       console.log(item);

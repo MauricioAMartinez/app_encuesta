@@ -2214,7 +2214,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2223,7 +2222,7 @@ __webpack_require__.r(__webpack_exports__);
       correo: [],
       respuestas: [],
       idEdit: 0,
-      headers: [{
+      headersEncuesta: [{
         text: "#",
         align: "start",
         sortable: false,
@@ -2248,7 +2247,27 @@ __webpack_require__.r(__webpack_exports__);
       },
       defaultItem: {
         correo: ""
-      }
+      },
+      headers: [{
+        text: "#",
+        align: "start",
+        value: "updated_at"
+      }, {
+        text: "Pregunta_1",
+        value: "respuesta_1"
+      }, {
+        text: "Pregunta_2",
+        value: "respuesta_2"
+      }, {
+        text: "Pregunta_3",
+        value: "respuesta_3"
+      }, {
+        text: "Pregunta_4",
+        value: "respuesta_4"
+      }, {
+        text: "Pregunta_5",
+        value: "respuesta_5"
+      }]
     };
   },
   computed: {
@@ -2324,7 +2343,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get("respuesta/" + item.id).then(function (response) {
-        return _this4.respuestas = response.data;
+        return console.log(_this4.respuestas = response.data);
       });
     },
     direccionar: function direccionar(item) {
@@ -2480,8 +2499,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         this.$swal("Bien hecho", "Gracias por responder ", "success");
         setTimeout(function () {
-          location.reload();
-        }, 4000);
+          window.open('http://app_encuesta.local/encuesta/' + correo + '/0');
+        }, 1000);
+        setTimeout(function () {
+          window.close();
+        }, 1100);
       } else {
         this.$swal("Oopss..", "Debes completar los campos", "error");
       }
@@ -38489,7 +38511,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-data-table", {
     staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.correo, "sort-by": "calories" },
+    attrs: {
+      headers: _vm.headersEncuesta,
+      items: _vm.correo,
+      "sort-by": "calories"
+    },
     scopedSlots: _vm._u([
       {
         key: "top",
@@ -38854,7 +38880,7 @@ var render = function() {
               {
                 attrs: {
                   transition: "dialog-bottom-transition",
-                  "max-width": "600"
+                  "max-width": "900"
                 },
                 scopedSlots: _vm._u(
                   [
@@ -38906,39 +38932,19 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                _vm._l(_vm.respuestas, function(respuesta) {
-                                  return _c(
-                                    "div",
-                                    [
-                                      _c(
-                                        "v-col",
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              attrs: { color: "primary" },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.direccionar(
-                                                    respuesta.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(respuesta.created_at)
-                                              )
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                }),
-                                0
+                                { staticClass: "mt-5" },
+                                [
+                                  _c("v-data-table", {
+                                    staticClass: "elevation-1",
+                                    attrs: {
+                                      dense: "",
+                                      headers: _vm.headers,
+                                      items: _vm.respuestas,
+                                      "item-key": "name"
+                                    }
+                                  })
+                                ],
+                                1
                               ),
                               _vm._v(" "),
                               _c(
