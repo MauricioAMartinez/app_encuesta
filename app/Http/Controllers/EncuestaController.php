@@ -58,7 +58,7 @@ class EncuestaController extends Controller
 
         if (empty($consulta)) {
 
-            return 'Encuesta no encontrada';
+            return view('error404');
         } else {
 
             if ($token == 0) {

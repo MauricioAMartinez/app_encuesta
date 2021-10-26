@@ -8,7 +8,7 @@ import VueSwal from 'vue-swal'
 Vue.use(Vuetify);
 Vue.use(VueSwal)
 
-
+Vue.component('error-component', require('./components/Error404Component.vue').default);
 Vue.component('encuesta-component', require('./components/EncuestaComponent.vue').default);
 Vue.component('encuestaok-component', require('./components/EncuestaOkComponent.vue').default);
 Vue.component('correo-component', require('./components/CorreoComponent.vue').default);
