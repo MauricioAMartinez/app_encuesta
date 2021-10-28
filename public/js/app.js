@@ -2494,16 +2494,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return console.log(response.data);
         });
         this.$swal("Bien hecho", "Gracias por responder ", "success");
-        /*
-        setTimeout(() => {
-          window.open('http://app_encuesta.local/encuesta/'+correo+'/0');
+        setTimeout(function () {
+          window.open('http://app_encuesta.local/encuesta/' + correo + '/0');
         }, 1000);
-        setTimeout(() => {
+        setTimeout(function () {
           window.close();
         }, 1100);
-        } else {
+      } else {
         this.$swal("Oopss..", "Debes completar los campos", "error");
-        */
       }
     },
     reset: function reset() {
