@@ -271,12 +271,9 @@ export default {
     listarRespuestas(item) {
       axios
         .get("respuesta/" + item.id)
-        .then((response) => console.log((this.respuestas = response.data)));
+        .then((response) => ((this.respuestas = response.data)));
     },
-    direccionar(item) {
-      console.log(item);
-      window.open("pregunta/" + item, "blank");
-    },
+
     save() {
       if (this.editedIndex > -1) {
         axios
@@ -284,7 +281,7 @@ export default {
             id: this.idEdit,
             correo: this.editedItem.correo,
           })
-          .then((response) => console.log(response.data));
+          .then((response) => (response.data));
         this.listarCorreo();
         this.$swal(
           "Correcto",

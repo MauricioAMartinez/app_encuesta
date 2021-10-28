@@ -2343,12 +2343,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get("respuesta/" + item.id).then(function (response) {
-        return console.log(_this4.respuestas = response.data);
+        return _this4.respuestas = response.data;
       });
-    },
-    direccionar: function direccionar(item) {
-      console.log(item);
-      window.open("pregunta/" + item, "blank");
     },
     save: function save() {
       if (this.editedIndex > -1) {
@@ -2356,7 +2352,7 @@ __webpack_require__.r(__webpack_exports__);
           id: this.idEdit,
           correo: this.editedItem.correo
         }).then(function (response) {
-          return console.log(response.data);
+          return response.data;
         });
         this.listarCorreo();
         this.$swal("Correcto", "Se han editado los datos,la encuesta se a reenviado ", "success");
