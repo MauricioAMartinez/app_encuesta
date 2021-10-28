@@ -113,7 +113,7 @@ export default {
         }).then((response) => console.log(response.data));
         
         this.$swal("Bien hecho", "Gracias por responder ", "success");
-        
+        /*
         setTimeout(() => {
           window.open('http://app_encuesta.local/encuesta/'+correo+'/0');
         }, 1000);
@@ -122,6 +122,7 @@ export default {
         }, 1100);
       } else {
         this.$swal("Oopss..", "Debes completar los campos", "error");
+        */
       }
     },
     reset() {

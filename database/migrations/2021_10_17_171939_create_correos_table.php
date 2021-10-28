@@ -17,7 +17,7 @@ class CreateCorreosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('correo')->unique();
-            $table->string('api_token')->unique();          
+            $table->string('api_token');          
            
 
 

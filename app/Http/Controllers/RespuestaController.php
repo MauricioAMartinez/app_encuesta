@@ -53,14 +53,21 @@ class RespuestaController extends Controller
 
         $respuesta->save();
 
-        
-
-
+        /*
+        $correo = Correo::table('respuestas')
+        ->where('id', $consulta)
+        ->update(['api_toke' => 0]);
+        */
+        $consulta;
         $correo = Correo::find($consulta);
         $correo->api_token = 0;
+        $correo->created_at = $correo->created_at;
+        $correo->updated_at = $correo->updated_at;
+        $correo->correo = $correo->correo;
+       
         $correo->save();
-        
-        return 'Coreo Enviado correctamente';
+        return $correo;
+       
     }
 
     /**
